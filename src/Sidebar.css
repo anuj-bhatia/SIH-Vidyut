@@ -1,0 +1,18 @@
+#sidebar {
+    width: 30%;
+    display: flex;
+}
+
+.title{
+    font-family: "Karantina", system-ui;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: 5px;
+    font-size: 5rem;
+}
+img{
+    height: 70px;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+}
+
