@@ -1,13 +1,22 @@
 import Sidebar from './Sidebar';
 import Map from "./Map";
 import "./App.css"
+import { useState } from 'react';
 
 function App() {
-  return (
-    // <div style={{display: "flex"; height: 100vh}}>
+  const [activeMarker, setActiveMarker] = useState(null);
+
+  const handleActiveMarker = (marker) => {
+    if(marker === activeMarker){
+      return;
+    }
+    setActiveMarker(marker);
+  };  
+  
+  return (    
     <div id="main">
-      <Sidebar/>
-      <Map/>
+      <Sidebar activeMarker={activeMarker}/>
+      <Map activeMarker={activeMarker} handleActiveMarker={handleActiveMarker}/>
     </div>
   )
 }

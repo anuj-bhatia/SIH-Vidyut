@@ -9,11 +9,11 @@ SubstationData.records.map((rec)=>{
     lat: Number(latLngArr[0]),
     lng: Number(latLngArr[1])
   }  
-  console.log(position);
+  //console.log(position);
   rec.push(position);  
 })
 
-console.log(SubstationData.records);
+//console.log(SubstationData.records);
 
 
 const containerStyle = {
@@ -26,24 +26,7 @@ const center = {
   lng: 77.2
 };
 
-// const markers = [
-//     {
-//         id: 1,
-//         name: "mark1",
-//         position: { lat: 28.52 , lng: 77.1}
-//     },
-//     {
-//         id: 2,
-//         name: "mark2",
-//         position: { lat: 28.54 , lng: 77.1}
-//     },    {
-//         id: 3,
-//         name: "mark3",
-//         position: { lat: 28.56 , lng: 77.1}
-//     },
-// ]
-
-function MyComponent() {
+function MyComponent({activeMarker , handleActiveMarker}) {
   const { isLoaded } = useJsApiLoader({
     id: '2f79f89f41688475',
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
@@ -51,14 +34,14 @@ function MyComponent() {
     
   });
 
-  const [activeMarker, setActiveMarker] = useState(null);
+  // const [activeMarker, setActiveMarker] = useState(null);
 
-  const handleActiveMarker = (marker) => {
-    if(marker === activeMarker){
-      return;
-    }
-    setActiveMarker(marker);
-  };  
+  // const handleActiveMarker = (marker) => {
+  //   if(marker === activeMarker){
+  //     return;
+  //   }
+  //   setActiveMarker(marker);
+  // };  
 
   const [map, setMap] = React.useState(null)
 
@@ -80,7 +63,7 @@ function MyComponent() {
         mapContainerStyle={containerStyle}
         center={center}
         zoom={11}
-        onClick={()=> setActiveMarker(null)}
+        onClick={()=> handleActiveMarker(null)}
         onLoad={onLoad}
         onUnmount={onUnmount}
         options={{
@@ -107,7 +90,7 @@ function MyComponent() {
                 }}
               >
                   {
-                    activeMarker === rec[0] ? <InfoWindowF onCloseClick={()=> setActiveMarker(null)}>
+                    activeMarker === rec[0] ? <InfoWindowF onCloseClick={()=> handleActiveMarker(null)}>
                       <div>{rec[1]}</div>
                     </InfoWindowF> : null
                   }
@@ -123,7 +106,7 @@ function MyComponent() {
                 }}
               >
                   {
-                    activeMarker === rec[0] ? <InfoWindowF onCloseClick={()=> setActiveMarker(null)}>
+                    activeMarker === rec[0] ? <InfoWindowF onCloseClick={()=> handleActiveMarker(null)}>
                       <div>{rec[1]}</div>
                     </InfoWindowF> : null
                   }
